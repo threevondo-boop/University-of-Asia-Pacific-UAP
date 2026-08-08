@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - UAP Question Archive</title>
+    <meta name="description" content="Admin panel — for admins only.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="Admin Panel - UAP Question Archive">
+    <meta property="og:description" content="Admin panel — for admins only.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UAP Question Archive">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="nav.css?v=12">
+    <link rel="stylesheet" href="theme.css?v=12">
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="home.html" class="brand">🎓 UAP Question Archive</a>
+
+        <div class="nav-search">
+            <input type="text" id="siteSearch" placeholder="Search semester, subject...">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="semester.html" data-i18n="nav.questions">Previous Questions</a>
+            <a href="notes.html" data-i18n="nav.notes">Notes</a>
+            <a href="upload.html" data-i18n="nav.upload">Upload</a>
+            <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">বাং</button>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="report.html" class="report-link" data-i18n="nav.report">🚩 Report</a>
+                <a href="signin.html" class="signin-link" data-i18n="nav.signin">🔒 Sign in</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="page-main">
+
+    <!-- Sign-in na thakle / admin na hole ei screen ta dekhabe -->
+    <section class="hero" id="gateScreen">
+        <span class="eyebrow">Restricted</span>
+        <h1>Admin Panel</h1>
+        <p id="gateMessage">Checking your access…</p>
+        <div class="hero-actions" id="gateActions" style="display:none;">
+            <a href="signin.html?redirect=admin.html" class="btn-primary">🔐 Sign in</a>
+            <a href="home.html" class="btn-secondary">← Back to site</a>
+        </div>
+    </section>
+
+    <!-- Admin verified hole eita dekhabe -->
+    <div class="admin-wrap" id="adminApp" style="display:none;">
+
+        <section class="hero" style="text-align:left;padding-left:0;padding-right:0;max-width:none;">
+            <span class="eyebrow">Admin</span>
+            <h1 style="font-size:2rem;">Control Panel</h1>
+            <p id="adminWho" style="margin:0;"></p>
+        </section>
+
+        <!-- Cloudinary setup baki thakle ei banner dekhabe — admin.js
+             shows/hides this, so a silently-failed upload never
+             surprises anyone. -->
+        <div class="config-banner" id="configBanner" style="display:none;">
+            <span style="font-size:20px;">⚠️</span>
+            <div>
+                <b>Cloudinary isn't connected yet</b>
+                Uploads (notes, question papers, gallery photos) won't work until this is set up.
+                Add your Cloud name and Upload preset to <code>cloudinary-config.js</code>.
+            </div>
+        </div>
+
+        <div class="admin-stats" id="adminStats">
+            <div class="stat-box"><span class="n" id="statNotes">–</span><span class="lbl">Notes</span></div>
+            <div class="stat-box"><span class="n" id="statQuestions">–</span><span class="lbl">Question papers</span></div>
+            <div class="stat-box"><span class="n" id="statGallery">–</span><span class="lbl">Gallery photos</span></div>
+            <div class="stat-box"><span class="n" id="statPending">–</span><span class="lbl">Pending review</span></div>
+            <div class="stat-box"><span class="n" id="statReports">–</span><span class="lbl">Open reports</span></div>
+        </div>
+
+        <div class="admin-tabs" role="tablist">
+            <button class="active" data-panel="pNotes">📄 Notes</button>
+            <button data-panel="pQuestions">📘 Question papers</button>
+            <button data-panel="pGallery">🖼 Gallery</button>
+            <button data-panel="pPending">⏳ Pending <span id="pendingCount"></span></button>
+            <button data-panel="pReports">🚩 Reports <span id="reportCount"></span></button>
+        </div>
+
+        <!-- Shared datalists — Notes and Question papers forms both
+             pull suggestions from here. admin.js adds any extra
+             values it finds already in use, so typing stays
+             consistent (no "CT.5" vs "Ct.5" duplicates). -->
+        <datalist id="semesterList">
+            <option value="1.1"></option><option value="1.2"></option>
+            <option value="2.1"></option><option value="2.2"></option>
+            <option value="3.1"></option><option value="3.2"></option>
+            <option value="4.1"></option><option value="4.2"></option>
+        </datalist>
+        <datalist id="examList">
+            <option value="CT.1"></option><option value="CT.2"></option>
+            <option value="CT.3"></option><option value="CT.4"></option>
+            <option value="Mid"></option><option value="Final"></option>
+        </datalist>
+        <datalist id="subjectList">
+            <option value="CSE 207"></option><option value="CSE 208"></option>
+            <option value="CSE 209"></option><option value="CSE 210"></option>
+            <option value="CSE 211"></option><option value="CSE 212"></option>
+            <option value="ECN (CSE) 201"></option><option value="MTH 203"></option>
+        </datalist>
+        <datalist id="batchList">
+            <option value="51"></option><option value="52"></option><option value="53"></option>
+            <option value="54"></option><option value="55"></option><option value="56"></option>
+        </datalist>
+
+        <!-- ============ NOTES ============ -->
+        <div class="admin-panel active" id="pNotes">
+            <div class="admin-note">
+                PDFs up to 10 MB upload directly. Anything bigger, use the
+                <b>Google Drive link</b> field below instead — both show up
+                identically on the site, students won't know the difference.
+            </div>
+
+            <div class="card" style="max-width:none;margin:0 0 30px;">
+                <div class="admin-section-intro"><h2>Add a note</h2></div>
+
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="nTitle">Title</label>
+                        <input type="text" id="nTitle" placeholder="e.g. DLD full handnote — chapter 1-5">
+                    </div>
+                    <div class="field flexible">
+                        <label for="nSemester">Semester</label>
+                        <input type="text" id="nSemester" list="semesterList" value="2.2" autocomplete="off">
+                        <span class="field-hint">Pick one, or type a new semester.</span>
+                    </div>
+                    <div class="field flexible">
+                        <label for="nBatch">Batch</label>
+                        <input type="text" id="nBatch" list="batchList" value="55" autocomplete="off">
+                        <span class="field-hint">Pick one, or type a new batch number.</span>
+                    </div>
+                    <div class="field flexible">
+                        <label for="nSubject">Subject</label>
+                        <input type="text" id="nSubject" list="subjectList" placeholder="e.g. Digital Logic Design (CSE 209)" autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label for="nAuthor">Whose note</label>
+                        <input type="text" id="nAuthor" placeholder="e.g. Abdullah Usama">
+                    </div>
+                    <div class="field">
+                        <label for="nDate">Date</label>
+                        <input type="date" id="nDate">
+                        <span class="field-hint">Defaults to today — change it if the note is from earlier.</span>
+                    </div>
+                    <div class="field">
+                        <label for="nDrive">Google Drive link (if over 10 MB)</label>
+                        <input type="text" id="nDrive" placeholder="https://drive.google.com/file/d/…">
+                    </div>
+                </div>
+
+                <div class="drop-zone" id="nDrop">
+                    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 18h6M9 12h2"/></svg>
+                    <strong>Drop the PDF here</strong>
+                    <small>max 10 MB</small>
+                    <button type="button" class="choose-file-btn" id="nChoose">Choose file</button>
+                    <input type="file" id="nFile" accept="application/pdf" hidden>
+                </div>
+                <div class="progress" id="nProgress"><i></i></div>
+
+                <p class="status-line" id="nStatus"></p>
+                <button class="btn-sm" id="nSave" style="margin-top:14px;">Publish note</button>
+            </div>
+
+            <div class="admin-section-intro"><h2>Published notes</h2></div>
+            <div class="table-scroll"><table class="data-table">
+                <thead>
+                    <tr><th>Note</th><th>Subject</th><th>Batch</th><th>Added</th><th></th></tr>
+                </thead>
+                <tbody id="notesRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+            </table></div>
+        </div>
+
+        <!-- ============ QUESTION PAPERS ============ -->
+        <div class="admin-panel" id="pQuestions">
+            <div class="admin-note">
+                Papers added here go live immediately (no approval needed since
+                you're an admin). Student submissions land in the <b>Pending</b>
+                tab instead.
+            </div>
+
+            <div class="card" style="max-width:none;margin:0 0 30px;">
+                <div class="admin-section-intro">
+                    <h2>Add a question paper</h2>
+                    <p>Semester, Exam and Subject all accept new values — not just the ones
+                       already on the site. Type "CT.5" for a new exam, or a new semester
+                       entirely, and it will be tracked correctly.</p>
+                </div>
+                <div class="form-grid">
+                    <div class="field flexible">
+                        <label for="qSemester">Semester</label>
+                        <input type="text" id="qSemester" list="semesterList" value="2.2" autocomplete="off">
+                    </div>
+                    <div class="field flexible">
+                        <label for="qExam">Exam</label>
+                        <input type="text" id="qExam" list="examList" value="CT.1" autocomplete="off">
+                    </div>
+                    <div class="field flexible">
+                        <label for="qSubject">Subject</label>
+                        <input type="text" id="qSubject" list="subjectList" placeholder="e.g. CSE 209" autocomplete="off">
+                    </div>
+                    <div class="field flexible">
+                        <label for="qBatch">Batch</label>
+                        <input type="text" id="qBatch" list="batchList" value="55" autocomplete="off">
+                    </div>
+                    <div class="field">
+                        <label for="qSection">Section</label>
+                        <input type="text" id="qSection" placeholder="A / B / C — leave blank if unknown">
+                    </div>
+                    <div class="field">
+                        <label for="qSet">Set (optional)</label>
+                        <input type="text" id="qSet" placeholder="A / B / 1 / 2">
+                    </div>
+                    <div class="field">
+                        <label for="qDate">Date</label>
+                        <input type="date" id="qDate">
+                        <span class="field-hint">Defaults to today.</span>
+                    </div>
+                </div>
+
+                <div class="drop-zone" id="qDrop">
+                    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                    <strong>Drop question paper photos here</strong>
+                    <small>JPG / PNG &nbsp;·&nbsp; max 10 MB &nbsp;·&nbsp; multiple at once is fine</small>
+                    <button type="button" class="choose-file-btn" id="qChoose">Choose files</button>
+                    <input type="file" id="qFile" accept="image/*" multiple hidden>
+                </div>
+                <div class="progress" id="qProgress"><i></i></div>
+
+                <p class="status-line" id="qStatus"></p>
+                <button class="btn-sm" id="qSave" style="margin-top:14px;">Publish paper</button>
+            </div>
+
+            <div class="admin-section-intro"><h2>Recently added</h2></div>
+            <div class="table-scroll"><table class="data-table">
+                <thead>
+                    <tr><th>Paper</th><th>Batch</th><th>By</th><th>Added</th><th></th></tr>
+                </thead>
+                <tbody id="questionRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+            </table></div>
+        </div>
+
+        <!-- ============ GALLERY ============ -->
+        <div class="admin-panel" id="pGallery">
+            <div class="admin-note">
+                Photos added here appear on the Gallery page automatically —
+                no need to touch any HTML.
+            </div>
+
+            <div class="card" style="max-width:none;margin:0 0 30px;">
+                <div class="admin-section-intro"><h2>Add photos</h2></div>
+                <div class="form-grid">
+                    <div class="field full">
+                        <label for="gTitle">Title / event name</label>
+                        <input type="text" id="gTitle" placeholder="e.g. CSE Farewell 2026">
+                        <span class="field-hint">Same title + same date wala photo gula gallery-te ek shathe group hobe.</span>
+                    </div>
+                    <div class="field">
+                        <label for="gDate">Date</label>
+                        <input type="date" id="gDate">
+                    </div>
+                    <div class="field">
+                        <label for="gCaption">Caption (optional)</label>
+                        <input type="text" id="gCaption" placeholder="optional">
+                    </div>
+                </div>
+                <div class="drop-zone" id="gDrop">
+                    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                    <strong>Drop photos here</strong>
+                    <small>JPG / PNG &nbsp;·&nbsp; max 10 MB each &nbsp;·&nbsp; multiple at once is fine</small>
+                    <button type="button" class="choose-file-btn" id="gChoose">Choose files</button>
+                    <input type="file" id="gFile" accept="image/*" multiple hidden>
+                </div>
+                <div class="progress" id="gProgress"><i></i></div>
+                <p class="status-line" id="gStatus"></p>
+                <button class="btn-sm" id="gSave" style="margin-top:14px;">Add to gallery</button>
+            </div>
+
+            <div class="admin-section-intro"><h2>In the gallery</h2></div>
+            <div class="table-scroll"><table class="data-table">
+                <thead><tr><th>Photo</th><th>Caption</th><th>Added</th><th></th></tr></thead>
+                <tbody id="galleryRows"><tr><td colspan="4">Loading…</td></tr></tbody>
+            </table></div>
+        </div>
+
+        <!-- ============ PENDING ============ -->
+        <div class="admin-panel" id="pPending">
+            <div class="admin-note">
+                Everything students send from <b>Upload</b> lands here.
+                <b>Approve</b> publishes it immediately; <b>Reject</b> keeps the file
+                but marks it declined.
+            </div>
+            <div class="table-scroll"><table class="data-table">
+                <thead>
+                    <tr><th>Preview</th><th>Details</th><th>From</th><th>When</th><th></th></tr>
+                </thead>
+                <tbody id="pendingRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+            </table></div>
+        </div>
+
+        <!-- ============ REPORTS ============ -->
+        <div class="admin-panel" id="pReports">
+            <div class="admin-note">
+                Everything submitted from report.html shows up here. Fix the
+                issue, then press <b>Resolve</b> to clear it from the list.
+            </div>
+            <div class="table-scroll"><table class="data-table">
+                <thead>
+                    <tr><th>Type</th><th>Problem</th><th>Page</th><th>From</th><th></th></tr>
+                </thead>
+                <tbody id="reportRows"><tr><td colspan="5">Loading…</td></tr></tbody>
+            </table></div>
+        </div>
+
+    </div>
+</main>
+
+<!-- PDF reader -->
+<div class="pdf-modal" id="pdfModal" style="display:none;">
+    <div class="pdf-modal-bar">
+        <button type="button" class="pdf-back" onclick="uapClosePdf()">&#8592; Back</button>
+        <span class="pdf-title" id="pdfTitle"></span>
+        <a id="pdfOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <button type="button" onclick="uapClosePdf()">✕ Close</button>
+    </div>
+    <iframe id="pdfFrame" src="" title="PDF viewer"></iframe>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-brand">UAP Question Archive</div>
+    <p class="footer-tagline" data-i18n="footer.tagline">Previous questions, organized by semester &amp; batch.</p>
+    <div class="footer-links">
+        <a href="home.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="notes.html" data-i18n="nav.notes">Notes</a>
+        <a href="upload.html" data-i18n="nav.upload">Upload</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="updates.html" data-i18n="nav.updates">Updates</a>
+    </div>
+    <p class="footer-copy"><span data-i18n="footer.copy_prefix">Made with</span> <span>♥</span> <span data-i18n="footer.copy_suffix">for UAP students</span></p>
+</footer>
+
+<script>window.SITE_PREFIX = "";</script>
+<script src="firebase-config.js?v=12"></script>
+<script src="cloudinary-config.js?v=12"></script>
+<script src="cloudinary-upload.js?v=12"></script>
+<script src="search-data.js?v=12"></script>
+<script src="search.js?v=12"></script>
+<script src="theme.js?v=12"></script>
+<script src="nav.js?v=12"></script>
+<script src="lang.js?v=12"></script>
+<script src="auth.js?v=12"></script>
+<script src="pdf-viewer.js?v=12"></script>
+<script src="admin.js?v=12"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="UAP Question Archive">
+  <!-- Site-er nijer color: navy base, gold mortarboard.
+       SVG favicon — jekono size e sharp thakbe, ar dark/light
+       browser tab duitatei porishkar dekhabe. -->
+  <rect width="64" height="64" rx="14" fill="#101B45"/>
+  <!-- mortarboard top (diamond) -->
+  <path d="M32 16 L54 25 L32 34 L10 25 Z" fill="#D4AF37"/>
+  <!-- cap body -->
+  <path d="M20 29.5 L20 40 C20 44 26 47 32 47 C38 47 44 44 44 40 L44 29.5 L32 34.5 Z" fill="#E8B93F"/>
+  <!-- tassel -->
+  <path d="M52 25.8 L52 38" stroke="#D4AF37" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <circle cx="52" cy="40.5" r="3" fill="#D4AF37"/>
+</svg>

@@ -1,0 +1,16 @@
+/* ============================================================
+   nav.css
+   ============================================================
+   Navbar-er MAIN styling theme.css e ache (.site-nav, .nav-inner,
+   .nav-links, .theme-toggle, etc) — shei file-er nijer history
+   ache (dark mode-er sathe ekshathe likha), tai ogulo okhaneo
+   rakha holo.
+
+   Ei file ta khali na rekhe ekhon EKTA jinish-i rakhlam:
+   proti page-e nav.css link kora-i ache, tai future-e kono extra
+   nav-related CSS lagle (notun kono button, notun kono state)
+   eikhane add korle SHOB page-e automatic chole jabe, kono HTML
+   e notun <link> add korte hobe na.
+
+   Ekhon eikhane kichu nai — dorkar hole eikhane add koro.
+   ============================================================ */

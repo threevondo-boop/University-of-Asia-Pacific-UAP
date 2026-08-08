@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - UAP Question Archive</title>
+    <meta name="description" content="Handnotes and slides shared by students — read them right in your browser.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Messenger / WhatsApp / Facebook e link share korle
+         ei tag gulo diyei preview banano hoy. og:image dite chaile
+         ekta PURO URL lagbe (https://tomar-site.github.io/image/...) —
+         domain final hole add kore niyo. -->
+    <meta property="og:title" content="Notes - UAP Question Archive">
+    <meta property="og:description" content="Handnotes and slides shared by students — read them right in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UAP Question Archive">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="nav.css?v=12">
+    <link rel="stylesheet" href="theme.css?v=12">
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="home.html" class="brand">🎓 UAP Question Archive</a>
+
+        <div class="nav-search">
+            <input type="text" id="siteSearch" placeholder="Search semester, subject...">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="semester.html" data-i18n="nav.questions">Previous Questions</a>
+            <a href="notes.html" data-i18n="nav.notes">Notes</a>
+            <a href="upload.html" data-i18n="nav.upload">Upload</a>
+            <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">বাং</button>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="report.html" class="report-link" data-i18n="nav.report">🚩 Report</a>
+                <a href="signin.html" class="signin-link" data-i18n="nav.signin">🔒 Sign in</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<main class="page-main">
+    <section class="hero">
+        <span class="eyebrow" data-i18n="notes.eyebrow">Study Material</span>
+        <h1 data-i18n="notes.title">Notes</h1>
+        <p data-i18n="notes.subtitle">Handnotes and slides shared by students — open and read right here, no download needed.</p>
+    </section>
+
+    <div class="notes-toolbar">
+        <input type="text" id="noteSearch" placeholder="Search title, subject or name…" data-i18n-placeholder="notes.search.placeholder">
+        <select id="noteSemester">
+            <option value="" data-i18n="notes.filter.allSemesters">All semesters</option>
+            <option>1.1</option><option>1.2</option>
+            <option>2.1</option><option>2.2</option>
+            <option>3.1</option><option>3.2</option>
+            <option>4.1</option><option>4.2</option>
+        </select>
+        <select id="noteBatch">
+            <option value="" data-i18n="notes.filter.allBatches">All batches</option>
+            <option>51</option><option>52</option><option>53</option>
+            <option>54</option><option>55</option><option>56</option>
+        </select>
+        <select id="noteSort">
+            <option value="new" data-i18n="notes.sort.newest">Newest first</option>
+            <option value="old" data-i18n="notes.sort.oldest">Oldest first</option>
+            <option value="az" data-i18n="notes.sort.az">Title A–Z</option>
+        </select>
+    </div>
+
+    <div class="note-grid" id="noteGrid"></div>
+    <div class="pager" id="notePager"></div>
+</main>
+
+<div class="pdf-modal" id="pdfModal" style="display:none;">
+    <div class="pdf-modal-bar">
+        <button type="button" class="pdf-back" onclick="uapClosePdf()">&#8592; Back</button>
+        <span class="pdf-title" id="pdfTitle"></span>
+        <a id="pdfOpen" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        <button type="button" onclick="uapClosePdf()">✕ Close</button>
+    </div>
+    <iframe id="pdfFrame" src="" title="PDF viewer"></iframe>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-brand">UAP Question Archive</div>
+    <p class="footer-tagline" data-i18n="footer.tagline">Previous questions, organized by semester &amp; batch.</p>
+    <div class="footer-links">
+        <a href="home.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="notes.html" data-i18n="nav.notes">Notes</a>
+        <a href="upload.html" data-i18n="nav.upload">Upload</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="updates.html" data-i18n="nav.updates">Updates</a>
+    </div>
+    <p class="footer-copy"><span data-i18n="footer.copy_prefix">Made with</span> <span>♥</span> <span data-i18n="footer.copy_suffix">for UAP students</span></p>
+</footer>
+
+<script>window.SITE_PREFIX = "";</script>
+<script src="firebase-config.js?v=12"></script>
+<script src="theme.js?v=12"></script>
+<script src="nav.js?v=12"></script>
+<script src="lang.js?v=12"></script>
+<script src="search-data.js?v=12"></script>
+<script src="search.js?v=12"></script>
+<script src="auth.js?v=12"></script>
+<script src="script.js?v=12"></script>
+<script src="pdf-viewer.js?v=12"></script>
+<script src="notes-data.js?v=12"></script>
+<script src="notes.js?v=12"></script>
+<script src="auth-guard.js?v=12"></script>
+</body>
+
+</html>

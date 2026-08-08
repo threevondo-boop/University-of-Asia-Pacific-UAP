@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a question paper - UAP Question Archive</title>
+    <meta name="description" content="Have a question paper? Upload it and everyone gets it.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="Upload a question paper - UAP Question Archive">
+    <meta property="og:description" content="Have a question paper? Upload it and everyone gets it.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UAP Question Archive">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="nav.css?v=12">
+    <link rel="stylesheet" href="theme.css?v=12">
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="home.html" class="brand">🎓 UAP Question Archive</a>
+
+        <div class="nav-search">
+            <input type="text" id="siteSearch" placeholder="Search semester, subject...">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="home.html" data-i18n="nav.home">Home</a>
+            <a href="semester.html" data-i18n="nav.questions">Previous Questions</a>
+            <a href="notes.html" data-i18n="nav.notes">Notes</a>
+            <a href="upload.html" class="active" data-i18n="nav.upload">Upload</a>
+            <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+            <a href="about.html" data-i18n="nav.about">About</a>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">বাং</button>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="report.html" class="report-link" data-i18n="nav.report">🚩 Report</a>
+                <a href="signin.html" class="signin-link" data-i18n="nav.signin">🔒 Sign in</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="page-main">
+    <section class="hero">
+        <span class="eyebrow" data-i18n="upload.eyebrow">Help the archive grow</span>
+        <h1 data-i18n="upload.title">Upload a question paper</h1>
+        <p data-i18n="upload.subtitle">Have a paper of your own? Upload it — once an admin approves it, everyone gets it.</p>
+    </section>
+
+    <div class="upload-shell">
+        <div class="card" style="max-width:none;margin:0;">
+            <h2 data-i18n="upload.form.title">Upload</h2>
+
+            <p class="status-line" id="cGate" style="margin-bottom:18px;"></p>
+
+            <div id="cForm" style="display:none;">
+
+                <div class="field" style="margin-bottom:18px;">
+                    <label for="cType">What are you uploading?</label>
+                    <select id="cType">
+                        <option value="question">Question paper</option>
+                        <option value="gallery">Gallery photo</option>
+                    </select>
+                </div>
+
+                <!-- Gallery photo hole ei block, question paper hole niche-r block -->
+                <div id="cGalleryFields" style="display:none;">
+                    <div class="form-grid">
+                        <div class="field full">
+                            <label for="cTitle">Title / event name</label>
+                            <input type="text" id="cTitle" placeholder="e.g. CSE Farewell 2026">
+                            <span class="field-hint">Same title + same date wala photo gula ek shathe group hobe.</span>
+                        </div>
+                        <div class="field">
+                            <label for="cDate">Date</label>
+                            <input type="date" id="cDate">
+                        </div>
+                        <div class="field">
+                            <label for="cCaption">Caption (optional)</label>
+                            <input type="text" id="cCaption" placeholder="optional">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cQuestionFields">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="cSemester">Semester</label>
+                        <select id="cSemester">
+                            <option>1.1</option><option>1.2</option>
+                            <option>2.1</option><option selected>2.2</option>
+                            <option>3.1</option><option>3.2</option>
+                            <option>4.1</option><option>4.2</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="cExam">Exam</label>
+                        <select id="cExam">
+                            <option>CT.1</option><option>CT.2</option>
+                            <option>CT.3</option><option>CT.4</option>
+                            <option>Mid</option><option>Final</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="cSubject">Subject</label>
+                        <input type="text" id="cSubject" list="cSubjectList" placeholder="e.g. CSE 209" autocomplete="off">
+                        <datalist id="cSubjectList">
+                            <option value="CSE 207"></option>
+                            <option value="CSE 208"></option>
+                            <option value="CSE 209"></option>
+                            <option value="CSE 210"></option>
+                            <option value="CSE 211"></option>
+                            <option value="CSE 212"></option>
+                            <option value="ECN (CSE) 201"></option>
+                            <option value="MTH 203"></option>
+                        </datalist>
+                        <span class="field-hint">Pick from the list, or type your subject if it's not there.</span>
+                    </div>
+                    <div class="field">
+                        <label for="cBatch">Batch</label>
+                        <select id="cBatch">
+                            <option>51</option><option>52</option><option>53</option>
+                            <option>54</option><option selected>55</option><option>56</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="cSection">Section</label>
+                        <input type="text" id="cSection" placeholder="A / B / C — leave blank if unknown">
+                    </div>
+                    <div class="field">
+                        <label for="cSet">Set (optional)</label>
+                        <input type="text" id="cSet" placeholder="A / B / 1 / 2">
+                    </div>
+                    <div class="field full">
+                        <label for="cNote">Anything the admin should know?</label>
+                        <input type="text" id="cNote" placeholder="optional">
+                    </div>
+                </div>
+                </div>
+
+                <div class="drop-zone" id="cDrop">
+                    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                    <strong>Question paper photo</strong>
+                    <small>JPG / PNG &nbsp;·&nbsp; max 10 MB each &nbsp;·&nbsp; multiple at once is fine</small>
+                    <button type="button" class="choose-file-btn" id="cChoose">Choose files</button>
+                    <input type="file" id="cFile" accept="image/*" multiple hidden>
+                </div>
+                <div class="progress" id="cProgress"><i></i></div>
+
+                <p class="status-line" id="cStatus"></p>
+                <button class="btn-sm" id="cSend" style="margin-top:14px;" data-i18n="upload.button">Send for review</button>
+            </div>
+        </div>
+
+        <aside class="upload-tips">
+            <h3>Before you upload</h3>
+            <ul>
+                <li>Photograph the whole page — sharp and well-lit, no glare.</li>
+                <li>One image per page. Multiple pages? Submit them one at a time.</li>
+                <li>Fill in Section only if you're sure — "not mentioned" is fine to leave blank.</li>
+                <li>An admin reviews every submission before it goes live.</li>
+                <li>You can check back later — approved papers appear on the subject's batch page automatically.</li>
+            </ul>
+        </aside>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-brand">UAP Question Archive</div>
+    <p class="footer-tagline" data-i18n="footer.tagline">Previous questions, organized by semester &amp; batch.</p>
+    <div class="footer-links">
+        <a href="home.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="notes.html" data-i18n="nav.notes">Notes</a>
+        <a href="upload.html" data-i18n="nav.upload">Upload</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="updates.html" data-i18n="nav.updates">Updates</a>
+    </div>
+    <p class="footer-copy"><span data-i18n="footer.copy_prefix">Made with</span> <span>♥</span> <span data-i18n="footer.copy_suffix">for UAP students</span></p>
+</footer>
+
+<script>window.SITE_PREFIX = "";</script>
+<script src="firebase-config.js?v=12"></script>
+<script src="cloudinary-config.js?v=12"></script>
+<script src="cloudinary-upload.js?v=12"></script>
+<script src="search-data.js?v=12"></script>
+<script src="search.js?v=12"></script>
+<script src="theme.js?v=12"></script>
+<script src="nav.js?v=12"></script>
+<script src="lang.js?v=12"></script>
+<script src="auth.js?v=12"></script>
+<script src="upload.js?v=12"></script>
+</body>
+
+</html>

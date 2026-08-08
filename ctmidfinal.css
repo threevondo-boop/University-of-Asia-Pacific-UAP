@@ -1,0 +1,225 @@
+/* ============================================================
+   ctmidfinal.css — semester.html + per-semester exam page style
+   ============================================================
+    .batch style age bhul kore mobile
+   media query-r vitore silo — seita age e ber kore disi 
+   - Purple gradient (#4F46E5/#7C3AED) bad diye navy/gold theme e
+     niye elam, jate style.css / ct.css / nav.css shobar sathe
+     match kore (age alada alada color scheme thakay site-ta
+     "professional/branded" na, "random" lagto).
+   - Exam button (CT/MID/FINAL) ar Semester list ("batch") duitar
+     e eki design language (navy base, gold hover) e niye elam.
+
+   .batch a-r text color age var(--navy) (fixed navy)
+   silo — dark mode e (jekhane card-o dark navy hoye jay) eta
+   almost invisible hoye jeto (navy-on-navy). Ekhon var(--text)
+   e niye elam, jeta theme.css e light/dark দুই mode-e e thik
+   contrast rakhe. Card background-o var(--card-bg) e niye elam
+   (age fixed "rgba(255,255,255,.92)" silo, dark mode e adapt
+   hoto na).
+   ============================================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+/* ---------------- Exam Buttons (CT / MID / FINAL) ---------------- */
+
+.exam-buttons{
+    min-height:80vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:26px;
+
+    padding:40px 20px;
+}
+
+.exam-buttons a{
+
+    width:90%;
+    max-width:500px;
+
+    padding:24px;
+
+    text-decoration:none;
+    text-align:center;
+
+    font-size:1.9rem;
+    font-weight:700;
+    letter-spacing:.5px;
+
+    color:var(--gold-2);
+
+    background: linear-gradient(135deg,var(--navy),var(--navy-2));
+
+    border-radius:20px;
+
+    box-shadow:
+        0 14px 30px rgba(16,27,69,.28),
+        inset 0 1px 1px rgba(255,255,255,.15);
+
+    transition:.35s;
+
+    position:relative;
+    overflow:hidden;
+}
+
+/* Shine Animation */
+
+.exam-buttons a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:45%;
+    height:100%;
+
+    background:rgba(255,255,255,.25);
+
+    transform:skewX(-25deg);
+
+    transition:.7s;
+}
+
+.exam-buttons a:hover::before{
+
+    left:150%;
+
+}
+
+/* Hover */
+
+.exam-buttons a:hover{
+
+    transform:translateY(-6px) scale(1.02);
+
+    background: linear-gradient(135deg,var(--gold),var(--gold-2));
+    color:var(--navy);
+
+    box-shadow:
+        0 20px 42px rgba(212,175,55,.4);
+
+    letter-spacing:1px;
+
+}
+
+/* Click */
+
+.exam-buttons a:active{
+
+    transform:scale(.97);
+
+}
+
+/* ---------------- Semester List ---------------- */
+
+.batch{
+    width: 90%;
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+.batch a{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-decoration: none;
+
+    background: var(--card-bg);
+    color: var(--text);
+
+    margin: 16px 0;
+    padding: 22px 28px;
+
+    border-radius: 18px;
+    border-left: 8px solid var(--gold);
+
+    font-size: 22px;
+    font-weight: 700;
+
+    box-shadow: 0 10px 25px rgba(16,27,69,.14);
+
+    transition: .35s ease;
+}
+
+/* Arrow */
+
+.batch a::after{
+    content: "➜";
+    font-size: 26px;
+    color: var(--gold);
+    transition: .35s;
+}
+
+/* Hover */
+
+.batch a:hover{
+
+    background: linear-gradient(135deg,var(--navy),var(--navy-2));
+
+    color: var(--gold-2);
+
+    transform: translateX(12px) scale(1.02);
+
+    box-shadow: 0 18px 36px rgba(16,27,69,.28);
+}
+
+.batch a:hover::after{
+    color: var(--gold-2);
+    transform: translateX(8px);
+}
+
+/* Click */
+
+.batch a:active{
+    transform: scale(.98);
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .exam-buttons{
+        gap:20px;
+    }
+
+    .exam-buttons a{
+        font-size:1.4rem;
+        padding:18px;
+    }
+}
+
+@media(max-width:768px){
+
+    .batch{
+        width: 92%;
+    }
+
+    .batch a{
+
+        font-size: 19px;
+
+        padding: 18px 22px;
+    }
+
+    .batch a::after{
+        font-size: 20px;
+    }
+
+}

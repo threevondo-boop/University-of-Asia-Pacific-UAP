@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester 1.1 FINAL</title>
+    <meta name="description" content="Semester 1.1 FINAL — UAP Question Archive.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <!-- Messenger / WhatsApp / Facebook e link share korle
+         ei tag gulo diyei preview banano hoy. og:image dite chaile
+         ekta PURO URL lagbe (https://tomar-site.github.io/image/...) —
+         domain final hole add kore niyo. -->
+    <meta property="og:title" content="Semester 1.1 FINAL">
+    <meta property="og:description" content="Semester 1.1 FINAL — UAP Question Archive.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UAP Question Archive">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="../style.css?v=12">
+    <link rel="stylesheet" href="../nav.css?v=12">
+    <link rel="stylesheet" href="../ct.css?v=12">
+    <link rel="stylesheet" href="../theme.css?v=12">
+</head>
+
+<body>
+
+    <nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../home.html" class="brand">🎓 UAP Question Archive</a>
+
+        <div class="nav-search">
+            <input type="text" id="siteSearch" placeholder="Search semester, subject...">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="../home.html" data-i18n="nav.home">Home</a>
+            <a href="../semester.html" data-i18n="nav.questions">Previous Questions</a>
+            <a href="../notes.html" data-i18n="nav.notes">Notes</a>
+            <a href="../upload.html" data-i18n="nav.upload">Upload</a>
+            <a href="../gallery.html" data-i18n="nav.gallery">Gallery</a>
+            <a href="../about.html" data-i18n="nav.about">About</a>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">বাং</button>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <a href="../report.html" class="report-link" data-i18n="nav.report">🚩 Report</a>
+                <a href="../signin.html" class="signin-link" data-i18n="nav.signin">🔒 Sign in</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- [ROUND 3] main wrapper add holo, sticky-footer fix (page-main +
+         footer -er note style.css e ache). -->
+    <main class="page-main">
+        <div class="message">
+            <h2>Semester 1.1 FINAL</h2>
+            <p>📄 This question hasn't been uploaded yet.</p>
+            <span class="coming-soon-badge">Coming soon</span>
+        </div>
+    </main>
+
+<div class="image-modal" id="imageModal" style="display:none;">
+    <span class="modal-close" onclick="closeImage()">&times;</span>
+    <div class="viewer-toolbar">
+        <button type="button" onclick="zoomOut()" aria-label="Zoom out">−</button>
+        <button type="button" onclick="resetZoom()" aria-label="Reset zoom">⟳</button>
+        <button type="button" onclick="zoomIn()" aria-label="Zoom in">+</button>
+    </div>
+    <img id="modalImage" src="" alt="Zoomed image">
+    <a id="downloadBtn" class="download-btn" href="" download>⬇ Download</a>
+    <span class="viewer-hint">&#8592; &#8594; next image &middot; scroll to zoom &middot; drag to move &middot; Esc to close</span>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-brand">UAP Question Archive</div>
+    <p class="footer-tagline" data-i18n="footer.tagline">Previous questions, organized by semester &amp; batch.</p>
+    <div class="footer-links">
+        <a href="../home.html" data-i18n="nav.home">Home</a>
+        <a href="../about.html" data-i18n="nav.about">About</a>
+        <a href="../notes.html" data-i18n="nav.notes">Notes</a>
+        <a href="../upload.html" data-i18n="nav.upload">Upload</a>
+        <a href="../gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="../contact.html" data-i18n="nav.contact">Contact</a>
+        <a href="../updates.html" data-i18n="nav.updates">Updates</a>
+    </div>
+    <p class="footer-copy"><span data-i18n="footer.copy_prefix">Made with</span> <span>♥</span> <span data-i18n="footer.copy_suffix">for UAP students</span></p>
+</footer>
+
+    <script>window.SITE_PREFIX = "../";</script>
+    <script src="../firebase-config.js?v=12"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="../theme.js?v=12"></script>
+    <script src="../nav.js?v=12"></script>
+    <script src="../lang.js?v=12"></script>
+    <script src="../search-data.js?v=12"></script>
+    <script src="../search.js?v=12"></script>
+    <script src="../auth.js?v=12"></script>
+    <script src="../script.js?v=12"></script>
+</body>
+
+</html>
