@@ -93,7 +93,7 @@ const STATIC_NOTES = [
         batch:    "55",
         author:   "Tazkiya Moufat[24101168]",
         date:     "2026-08-25",
-        url:      "https://drive.google.com/file/d/1zNo9nWzNLSOWMPpsTMW451lf6HkQoGhG/view?usp=drive_link"
+        url:      "https://drive.google.com/file/d/1hAU7zIGUAvmwlnwdVNvt0uwYtCOahqMK/view?usp=sharing"
     },
 
 ];
