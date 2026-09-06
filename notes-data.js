@@ -66,7 +66,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-09-04",
-        url:      "https://drive.google.com/file/d/1zNo9nWzNLSOWMPpsTMW451lf6HkQoGhG/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=sharing"
     },
     {
         title:    "C.S.E -207 Hand Note",
