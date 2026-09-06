@@ -75,7 +75,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-08-15",
-        url:      "https://drive.google.com/file/d/1YD-a5QewJCx5fi9lzBzlpW_aVXW7Khbp/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1uM0pksvApt38lAgsr7JBwaKJXDkvZ23o/view?usp=sharing"
     },
     {
         title:    "MTH 203 Hand Note",
