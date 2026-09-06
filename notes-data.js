@@ -66,7 +66,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-09-04",
-        url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1df5YfVqC_viVxJ29ZWTUe9S4FoB74Sff/view?usp=drive_link"
     },
     {
         title:    "C.S.E -207 Hand Note",
@@ -75,7 +75,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-08-15",
-        url:      "https://drive.google.com/file/d/1WUjI3bsn2RsLECTilFLNRQSUQyZe295W/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1YD-a5QewJCx5fi9lzBzlpW_aVXW7Khbp/view?usp=sharing"
     },
     {
         title:    "MTH 203 Hand Note",
@@ -94,6 +94,15 @@ const STATIC_NOTES = [
         author:   "Tazkiya Moufat[24101168]",
         date:     "2026-08-25",
         url:      "https://drive.google.com/file/d/1hAU7zIGUAvmwlnwdVNvt0uwYtCOahqMK/view?usp=sharing"
+    },
+     {
+        title:    "MTH 203 Hand Note",
+        subject:  "MTH 203",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-09-04",
+        url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=drive_link"
     },
 
 ];
