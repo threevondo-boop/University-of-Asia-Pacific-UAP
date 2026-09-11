@@ -104,5 +104,40 @@ const STATIC_NOTES = [
         date:     "2026-09-04",
         url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=drive_link"
     },
+    {
+        title:    "CSE 203 Hand Note",
+        subject:  "CSE 203",
+        semester: "2.1",
+        batch:    "56",
+        author:   "Mohammad Sayem Hossen(24201177)",
+        date:     "2026-09-11",
+        url:      "https://drive.google.com/file/d/1RuRIbZt6j2sxoHPZbYtVZV1TLDzw6kgE/view?usp=sharing"
+    },{
+        title:    "CSE 203 Hand Note",
+        subject:  "CSE 203",
+        semester: "2.1",
+        batch:    "56",
+        author:   "Asikuzzaman Dipon(24201184)",
+        date:     "2026-09-11",
+        url:      "https://drive.google.com/file/d/1tqgY48lbdmZZKuKEwn7BDiQIm9ihm0Vs/view?usp=sharing"
+    },
+    {
+        title:    "CSE 207 Note For MID",
+        subject:  "CSE 207",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-09-11",
+        url:      "https://drive.google.com/file/d/1TLlJbYpHA2qeKnYq02i2YWvqMD1Rgtm-/view?usp=drive_link"
+    },
+{
+        title:    "CSE 211 Note For MID",
+        subject:  "CSE 211",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Misty[24201134]",
+        date:     "2026-09-11",
+        url:      "https://drive.google.com/file/d/1pxiVxrP2Gw7kkkFVAZbHVrA-c5abBIPa/view?usp=sharing"
+    },
 
 ];
