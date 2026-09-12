@@ -139,5 +139,14 @@ const STATIC_NOTES = [
         date:     "2026-09-11",
         url:      "https://drive.google.com/file/d/1pxiVxrP2Gw7kkkFVAZbHVrA-c5abBIPa/view?usp=sharing"
     },
+    {
+        title:    "CSE 209 Note For MID",
+        subject:  "CSE 209",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-09-12",
+        url:      "https://drive.google.com/file/d/1Z-2Hdqv2NNBWDzhKo52IW-T5aeOTAepD/view?usp=sharing"
+    },
 
 ];
