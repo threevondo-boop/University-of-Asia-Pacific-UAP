@@ -130,7 +130,7 @@ const STATIC_NOTES = [
         date:     "2026-09-11",
         url:      "https://drive.google.com/file/d/1TLlJbYpHA2qeKnYq02i2YWvqMD1Rgtm-/view?usp=drive_link"
     },
-{
+   {
         title:    "CSE 211 Note For MID",
         subject:  "CSE 211",
         semester: "2.2",
@@ -147,6 +147,15 @@ const STATIC_NOTES = [
         author:   "Avi Dev[24201165]",
         date:     "2026-09-12",
         url:      "https://drive.google.com/file/d/1Z-2Hdqv2NNBWDzhKo52IW-T5aeOTAepD/view?usp=sharing"
+    },
+    {
+        title:    "CSE 209 Note For MID",
+        subject:  "CSE 209",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Misty[24201134]",
+        date:     "2026-09-12",
+        url:      "https://drive.google.com/file/d/1QmzoRFVaeJqW6pQNZGnsGiu-bZdlMaQr/view?usp=sharing"
     },
 
 ];
