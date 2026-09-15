@@ -157,5 +157,24 @@ const STATIC_NOTES = [
         date:     "2026-09-12",
         url:      "https://drive.google.com/file/d/1QmzoRFVaeJqW6pQNZGnsGiu-bZdlMaQr/view?usp=sharing"
     },
+     {
+        title:    "MTH 203 Note For MID",
+        subject:  "MTH 203",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Misty[24201134]",
+        date:     "2026-09-15",
+        url:      "https://drive.google.com/file/d/1hPebvgQ5ui-H7Qqj3WUX_Q3fude6wT7f/view?usp=sharing"
+    },
+     {
+        title:    "MTH 203 Note For MID",
+        subject:  "MTH 203",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-09-15",
+        url:      "https://drive.google.com/file/d/1y-Y6IvIYWPXs2TNr1hBgp39sVUrvtwRe/view?usp=sharing"
+    },
+
 
 ];
