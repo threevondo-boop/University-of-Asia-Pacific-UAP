@@ -68,24 +68,6 @@ const STATIC_NOTES = [
         date:     "2026-09-04",
         url:      "https://drive.google.com/file/d/1df5YfVqC_viVxJ29ZWTUe9S4FoB74Sff/view?usp=drive_link"
     },
-    {
-        title:    "C.S.E -207 Hand Note",
-        subject:  "C.S.E -207",
-        semester: "2.2",
-        batch:    "56",
-        author:   "Avi Dev[24201165]",
-        date:     "2026-08-15",
-        url:      "https://drive.google.com/file/d/1uM0pksvApt38lAgsr7JBwaKJXDkvZ23o/view?usp=sharing"
-    },
-    {
-        title:    "MTH 203 Hand Note",
-        subject:  "MTH 203",
-        semester: "2.2",
-        batch:    "56",
-        author:   "Misty[24201134]",
-        date:     "2026-08-15",
-        url:      "https://drive.google.com/file/d/1zNo9nWzNLSOWMPpsTMW451lf6HkQoGhG/view?usp=drive_link"
-    },
      {
         title:    "ECN 201Hand Note",
         subject:  "ECN 201",
@@ -94,15 +76,6 @@ const STATIC_NOTES = [
         author:   "Tazkiya Moufat[24101168]",
         date:     "2026-08-25",
         url:      "https://drive.google.com/file/d/1hAU7zIGUAvmwlnwdVNvt0uwYtCOahqMK/view?usp=sharing"
-    },
-     {
-        title:    "MTH 203 Hand Note",
-        subject:  "MTH 203",
-        semester: "2.2",
-        batch:    "56",
-        author:   "Avi Dev[24201165]",
-        date:     "2026-09-04",
-        url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=drive_link"
     },
     {
         title:    "CSE 203 Hand Note",
@@ -122,16 +95,16 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1tqgY48lbdmZZKuKEwn7BDiQIm9ihm0Vs/view?usp=sharing"
     },
     {
-        title:    "CSE 207 Note For MID",
+        title:    "CSE 207 Hand Note",
         subject:  "CSE 207",
         semester: "2.2",
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-09-11",
-        url:      "https://drive.google.com/file/d/1TLlJbYpHA2qeKnYq02i2YWvqMD1Rgtm-/view?usp=drive_link"
+        url:      "https://drive.google.com/file/d/1BONgNXz23e-eFwkUeAbe-JaVR3gUWSfA/view?usp=sharing"
     },
    {
-        title:    "CSE 211 Note For MID",
+        title:    "CSE 211 Hand Note",
         subject:  "CSE 211",
         semester: "2.2",
         batch:    "56",
@@ -140,16 +113,16 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1pxiVxrP2Gw7kkkFVAZbHVrA-c5abBIPa/view?usp=sharing"
     },
     {
-        title:    "CSE 209 Note For MID",
+        title:    "CSE 209 Hand Note",
         subject:  "CSE 209",
         semester: "2.2",
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-09-12",
-        url:      "https://drive.google.com/file/d/1Z-2Hdqv2NNBWDzhKo52IW-T5aeOTAepD/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1sQXhS8nTfyrrwnE6yXwB3xTH6Mq4BLOc/view?usp=sharing"
     },
     {
-        title:    "CSE 209 Note For MID",
+        title:    "CSE 209 Hand Note",
         subject:  "CSE 209",
         semester: "2.2",
         batch:    "56",
@@ -158,7 +131,7 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1QmzoRFVaeJqW6pQNZGnsGiu-bZdlMaQr/view?usp=sharing"
     },
      {
-        title:    "MTH 203 Note For MID",
+        title:    "MTH 203 Hand Note",
         subject:  "MTH 203",
         semester: "2.2",
         batch:    "56",
@@ -167,7 +140,7 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1hPebvgQ5ui-H7Qqj3WUX_Q3fude6wT7f/view?usp=sharing"
     },
      {
-        title:    "MTH 203 Note For MID",
+        title:    "MTH 203 Hand Note",
         subject:  "MTH 203",
         semester: "2.2",
         batch:    "56",
