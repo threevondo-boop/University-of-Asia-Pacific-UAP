@@ -119,7 +119,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-09-12",
-        url:      "https://drive.google.com/file/d/1sQXhS8nTfyrrwnE6yXwB3xTH6Mq4BLOc/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1pcIYMLjB9xUH6P9P6CvByB7w9LLsyZDS/view?usp=sharing"
     },
     {
         title:    "CSE 209 Hand Note",
