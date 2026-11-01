@@ -104,7 +104,7 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1BONgNXz23e-eFwkUeAbe-JaVR3gUWSfA/view?usp=sharing"
     },
    {
-        title:    "CSE 211 Hand Note",
+        title:    "CSE 211 Hand Note before mid",
         subject:  "CSE 211",
         semester: "2.2",
         batch:    "56",
@@ -157,6 +157,25 @@ const STATIC_NOTES = [
         date:     "2026-10-16",
         url:      "https://drive.google.com/file/d/1unplWbsameZWbCldHeu17sMvzJOzGICc/view?usp=sharing"
     },
+     {
+        title:    "CSE 211 Hand Note After Mid",
+        subject:  "CSE 211",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-11-01",
+        url:      "https://drive.google.com/file/d/14T4tGvy6oc9YpqfrmkKTcv_avLkQN_T9/view?usp=sharing"
+    },
+    {
+        title:    "ECN 201 Hand Note After Mid",
+        subject:  "ECN 201",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Avi Dev[24201165]",
+        date:     "2026-11-01",
+        url:      "https://drive.google.com/file/d/1sNkFwVlqEn-r9kF0sKmqn1k-9OWgxfwe/view?usp=drive_link"
+    },
+
 
 
 ];
