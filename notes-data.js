@@ -130,15 +130,7 @@ const STATIC_NOTES = [
         date:     "2026-09-12",
         url:      "https://drive.google.com/file/d/1QmzoRFVaeJqW6pQNZGnsGiu-bZdlMaQr/view?usp=sharing"
     },
-     {
-        title:    "MTH 203 Hand Note",
-        subject:  "MTH 203",
-        semester: "2.2",
-        batch:    "56",
-        author:   "Misty[24201134]",
-        date:     "2026-09-15",
-        url:      "https://drive.google.com/file/d/1hPebvgQ5ui-H7Qqj3WUX_Q3fude6wT7f/view?usp=sharing"
-    },
+  
      {
         title:    "MTH 203 Hand Note",
         subject:  "MTH 203",
@@ -158,13 +150,13 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1unplWbsameZWbCldHeu17sMvzJOzGICc/view?usp=sharing"
     },
      {
-        title:    "CSE 211 Hand Note After Mid",
+        title:    "CSE 211 Hand Note",
         subject:  "CSE 211",
         semester: "2.2",
         batch:    "56",
         author:   "Avi Dev[24201165]",
-        date:     "2026-11-01",
-        url:      "https://drive.google.com/file/d/14T4tGvy6oc9YpqfrmkKTcv_avLkQN_T9/view?usp=sharing"
+        date:     "2026-11-11",
+        url:      "https://drive.google.com/file/d/14T4tGvy6oc9YpqfrmkKTcv_avLkQN_T9/view?usp=drive_link"
     },
     {
         title:    "ECN 201 Hand Note After Mid",
@@ -174,6 +166,15 @@ const STATIC_NOTES = [
         author:   "Avi Dev[24201165]",
         date:     "2026-11-01",
         url:      "https://drive.google.com/file/d/1sNkFwVlqEn-r9kF0sKmqn1k-9OWgxfwe/view?usp=drive_link"
+    },
+       {
+        title:    "MTH 203 Hand Note",
+        subject:  "MTH 203",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Misty[24201134]",
+        date:     "2026-11-11",
+        url:      "https://drive.google.com/file/d/1_oVN1KMht8UaLtzwuDfXkTKivraFOKgy/view?usp=sharing"
     },
 
 
