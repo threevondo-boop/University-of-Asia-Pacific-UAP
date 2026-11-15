@@ -150,7 +150,7 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1unplWbsameZWbCldHeu17sMvzJOzGICc/view?usp=sharing"
     },
      {
-        title:    "CSE 211 Hand Note",
+        title:    "CSE 211 Hand Note[ER e simple vul ase (check aysha akter diyas note for ER)]",
         subject:  "CSE 211",
         semester: "2.2",
         batch:    "56",
