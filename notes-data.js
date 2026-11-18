@@ -137,7 +137,7 @@ const STATIC_NOTES = [
         semester: "2.2",
         batch:    "56",
         author:   "Avi Dev[24201165]",
-        date:     "2026-09-15",
+        date:     "2026-11-18",
         url:      "https://drive.google.com/file/d/1y-Y6IvIYWPXs2TNr1hBgp39sVUrvtwRe/view?usp=sharing"
     },
     {
@@ -176,6 +176,16 @@ const STATIC_NOTES = [
         date:     "2026-11-11",
         url:      "https://drive.google.com/file/d/1_oVN1KMht8UaLtzwuDfXkTKivraFOKgy/view?usp=sharing"
     },
+     {
+        title:    "MTH 207 Hand Note",
+        subject:  "MTH 207",
+        semester: "2.2",
+        batch:    "56",
+        author:   "Misty[24201134]",
+        date:     "2026-11-18",
+        url:      "https://drive.google.com/file/d/1tp63nskMkJNU4i5SaFjNe8G1uNbiwLpR/view?usp=sharing"
+    },
+
 
 
 
