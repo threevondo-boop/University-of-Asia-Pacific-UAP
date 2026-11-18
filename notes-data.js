@@ -138,7 +138,7 @@ const STATIC_NOTES = [
         batch:    "56",
         author:   "Avi Dev[24201165]",
         date:     "2026-11-18",
-        url:      "https://drive.google.com/file/d/1y-Y6IvIYWPXs2TNr1hBgp39sVUrvtwRe/view?usp=sharing"
+        url:      "https://drive.google.com/file/d/1iFUzOBDduy1ohQAhO5UPBRDLZJ1ZflRZ/view?usp=sharing"
     },
     {
         title:    "CSE 211 Hand Note After Mid",
