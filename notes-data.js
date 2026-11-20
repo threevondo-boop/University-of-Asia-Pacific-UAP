@@ -177,8 +177,8 @@ const STATIC_NOTES = [
         url:      "https://drive.google.com/file/d/1_oVN1KMht8UaLtzwuDfXkTKivraFOKgy/view?usp=sharing"
     },
      {
-        title:    "MTH 207 Hand Note",
-        subject:  "MTH 207",
+        title:    "CSE 207 Hand Note",
+        subject:  "CSE 207",
         semester: "2.2",
         batch:    "56",
         author:   "Misty[24201134]",
